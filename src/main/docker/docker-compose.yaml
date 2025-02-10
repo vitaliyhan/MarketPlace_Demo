@@ -1,8 +1,9 @@
 services:
   app:
-    dockerfile: Dockerfile
+    
     build:
       context: .
+      dockerfile: Dockerfile
     container_name: mktplace-app
     depends_on:
       - db
