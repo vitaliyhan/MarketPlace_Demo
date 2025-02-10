@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     container_name: mktplace-app
     ports:
-    - "80:80"
+    - "1800:8080"
     depends_on:
       - db
     environment:
