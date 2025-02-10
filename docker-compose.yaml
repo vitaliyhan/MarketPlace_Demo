@@ -5,8 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: mktplace-app
-    ports:
-    - "1800:8080"
     depends_on:
       - db
     environment:
