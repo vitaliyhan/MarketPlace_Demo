@@ -1,6 +1,6 @@
 services:
   app:
-    image: 'docker-spring-boot-postgres:latest'
+    dockerfile: Dockerfile
     build:
       context: .
     container_name: mktplace-app
