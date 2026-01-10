@@ -5,34 +5,10 @@ services:
     build: .
     ports:
       - "8081:8081"
-    environment:
-      - PORT=8081
-      - DATABASE_URL=jdbc:postgresql://db:5432/mktplace
-      - DB_USERNAME=postgres
-      - DB_PASSWORD=password
-      - DDL_AUTO=create-drop
-      - SHOW_SQL=true
-      - LOG_LEVEL=DEBUG
-    depends_on:
-      - db
+    env_file:
+      - .env
     networks:
       - mktplace-network
-
-  db:
-    image: postgres:15-alpine
-    environment:
-      - POSTGRES_DB=mktplace
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - mktplace-network
-
-volumes:
-  postgres_data:
 
 networks:
   mktplace-network:

@@ -86,15 +86,15 @@ For local testing before deploying to Coolify:
 
 ### Start the Application
 ```bash
-# Build and start with docker-compose (builds JAR from source)
+# Build and start with docker-compose (connects to your external database)
 docker-compose up --build
 
-# Or build image manually (builds JAR from source)
+# Or build image manually and run (connects to your external database)
 docker build -t mktplace .
-docker run -p 8081:8081 mktplace
+docker run --env-file .env -p 8081:8081 mktplace
 ```
 
-**Note**: The Docker build process compiles the application from source code each time, ensuring you always have the latest version.
+**Note**: The Docker build process compiles the application from source code each time. The application connects to your existing external PostgreSQL database using the connection details from `.env`.
 
 ### Access the Application
 - Local: http://localhost:8081
