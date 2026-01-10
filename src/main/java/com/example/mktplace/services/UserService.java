@@ -68,4 +68,9 @@ public class UserService {
         if (principal == null) return new User();
         return userRepository.findByEmail(principal.getName());
     }
+
+    public void save(User user) {
+        log.info("Saving user with email: {}", user.getEmail());
+        userRepository.save(user);
+    }
 }
