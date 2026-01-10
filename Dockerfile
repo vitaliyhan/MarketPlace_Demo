@@ -13,11 +13,17 @@ COPY pom.xml .
 # Download dependencies (this layer will be cached if pom.xml doesn't change)
 RUN ./mvnw dependency:go-offline -B
 
-# Copy source code
+# Copy source code (excluding any existing JAR files)
 COPY src ./src
 
-# Build the application
+# Ensure clean build - remove any existing target directory
+RUN rm -rf target/
+
+# Build the application from source code
 RUN ./mvnw clean package -DskipTests
+
+# Verify the JAR was built
+RUN ls -la target/*.jar
 
 # Create a smaller runtime image
 FROM eclipse-temurin:21-jre-alpine

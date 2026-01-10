@@ -65,6 +65,7 @@ If using an external PostgreSQL database, update the `DATABASE_URL` accordingly.
 1. **Build Settings**:
    - Build Pack: `Docker`
    - Dockerfile Path: `./Dockerfile` (leave default)
+   - **Note**: The Dockerfile builds the JAR from source code during the build process, not using any pre-existing JAR files
 
 2. **Port Configuration**:
    - Internal Port: `8081`
@@ -85,13 +86,15 @@ For local testing before deploying to Coolify:
 
 ### Start the Application
 ```bash
-# Build and start with docker-compose
+# Build and start with docker-compose (builds JAR from source)
 docker-compose up --build
 
-# Or build image manually
+# Or build image manually (builds JAR from source)
 docker build -t mktplace .
 docker run -p 8081:8081 mktplace
 ```
+
+**Note**: The Docker build process compiles the application from source code each time, ensuring you always have the latest version.
 
 ### Access the Application
 - Local: http://localhost:8081

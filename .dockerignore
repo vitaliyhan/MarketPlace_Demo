@@ -23,6 +23,9 @@ README.md
 # Maven
 target/
 
+# JAR files (ensure we build from source, not use existing JARs)
+*.jar
+
 # Images (if not needed in container)
 img/
 
