@@ -2,6 +2,25 @@
 <@t.template user>
     `<h1 style="text-align: center">Панель администратора</h1>
     <hr>
+    <#if !user.roles?seq_contains("ROLE_ADMIN")>
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">У вас нет прав администратора!</h4>
+            <p>Нажмите кнопку ниже, чтобы получить права администратора:</p>
+            <form action="/admin/become-admin" method="post" style="display: inline;">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">
+                <input type="submit" class="btn btn-warning" value="Стать администратором">
+            </form>
+        </div>
+        <hr>
+    <#else>
+        <div class="mb-3">
+            <form action="/admin/create-dummy-data" method="post" style="display: inline;">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">
+                <input type="submit" class="btn btn-success" value="Создать тестовые данные (20 товаров)">
+            </form>
+        </div>
+        <hr>
+    </#if>
     <table class="table table-hover table-dark">
         <tr>
             <th scope="col">Email</th>

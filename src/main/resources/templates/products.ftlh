@@ -14,9 +14,9 @@
                 </select>
             </div>
             <div class="form-group col-md-10">
-                <label for="searchWord">Поиск по объявлениям</label>
+                <label for="searchWord">Поиск по объявлениям (название и описание)</label>
                 <input type="text" name="searchWord" <#if searchWord??>value="${searchWord}"</#if> class="form-control"
-                       id="searchWord">
+                       id="searchWord" placeholder="Введите название товара или часть описания...">
             </div>
             <button style="width: 100%" type="submit" class="btn btn-dark">Поиск</button>
         </div>
@@ -27,8 +27,14 @@
             <a href="/product/${product.id}" class="product-link">
                 <div class="card text-white bg-dark my-3 product">
 
-                    <img src="/images/${product.previewImageId}"
-                         class="card-img-top">
+                    <#if product.previewImageId?? && product.previewImageId != 0>
+                        <img src="/images/${product.previewImageId}"
+                             class="card-img-top">
+                    <#else>
+                        <div class="card-img-top placeholder-gradient" style="height: 200px; display: flex; align-items: center; justify-content: center;">
+                            <span class="placeholder-text">Нет фото</span>
+                        </div>
+                    </#if>
                     <div class="card-body">
                         <h5 class="card-title">${product.title}</h5>
                         <p class="card-text">${product.price} ₽</p>
