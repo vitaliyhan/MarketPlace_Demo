@@ -80,12 +80,14 @@ This creates a JAR file in the `target/` directory and copies it to `dist/` for 
 The JAR file is committed to the `dist/` directory in the git repository. When you deploy to your VPS:
 
 1. **Clone/pull the repository** on your VPS
-2. **Run Docker directly** (no build step needed):
+2. **Run Docker directly** (no build step needed on VPS):
 
 ```bash
 # On your VPS - after cloning the repo
 docker-compose up --build -d
 ```
+
+**Note**: The JAR in `dist/` is automatically updated when you run `build.bat` or `build.sh` locally.
 
 ### Alternative: Local Build Process
 
