@@ -65,7 +65,7 @@ build.bat
 ./build.sh
 ```
 
-This will create a JAR file in the `target/` directory.
+This creates a JAR file in the `target/` directory and copies it to `dist/` for committing to git.
 
 ### Running Locally
 
@@ -75,19 +75,26 @@ This will create a JAR file in the `target/` directory.
 
 ## Docker Deployment
 
-### Build Process
+### Repository-Based Deployment
 
-1. **Build the JAR locally** using one of the build scripts above
-2. **Copy the JAR** to the same directory as the Dockerfile
-3. **Build and run** with Docker:
+The JAR file is committed to the `dist/` directory in the git repository. When you deploy to your VPS:
+
+1. **Clone/pull the repository** on your VPS
+2. **Run Docker directly** (no build step needed):
 
 ```bash
-# Build Docker image
-docker build -t marketplace-demo .
-
-# Run with docker-compose
-docker-compose up
+# On your VPS - after cloning the repo
+docker-compose up --build -d
 ```
+
+### Alternative: Local Build Process
+
+If you need to rebuild the JAR:
+
+1. **Build locally** using build scripts
+2. **Copy JAR to dist/**: `cp target/*.jar dist/`
+3. **Commit and push** to git
+4. **Deploy on VPS** as above
 
 ### Quick Deploy (Build + Docker)
 

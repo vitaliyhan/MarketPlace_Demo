@@ -29,10 +29,18 @@ if [ $? -eq 0 ]; then
     echo "✓ Build successful!"
     echo "JAR file created:"
     ls -la target/*.jar
+
+    # Copy JAR to dist directory for git
+    mkdir -p dist
+    cp target/*.jar dist/
     echo ""
-    echo "You can now use this JAR with Docker:"
-    echo "  docker build -t marketplace-demo ."
-    echo "  docker-compose up"
+    echo "✓ JAR copied to dist/ directory"
+    echo ""
+    echo "You can now commit the JAR and deploy:"
+    echo "  git add dist/"
+    echo "  git commit -m 'Update JAR'"
+    echo "  git push"
+    echo "  (then deploy on VPS with docker-compose up --build)"
 else
     echo ""
     echo "✗ Build failed!"

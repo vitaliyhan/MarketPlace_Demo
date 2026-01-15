@@ -31,10 +31,18 @@ if %errorlevel% equ 0 (
     echo ✓ Build successful!
     echo JAR file created:
     for %%f in (target\*.jar) do echo   %%f
+
+    REM Copy JAR to dist directory for git
+    if not exist dist mkdir dist
+    copy target\*.jar dist\ >nul
     echo.
-    echo You can now use this JAR with Docker:
-    echo   docker build -t marketplace-demo .
-    echo   docker-compose up
+    echo ✓ JAR copied to dist/ directory
+    echo.
+    echo You can now commit the JAR and deploy:
+    echo   git add dist/
+    echo   git commit -m "Update JAR"
+    echo   git push
+    echo   (then deploy on VPS with docker-compose up --build)
 ) else (
     echo.
     echo ✗ Build failed!
