@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Allow built JAR files in dist/ directory
+!dist/*.jar
+
 ### STS ###
 .apt_generated
 .classpath
@@ -28,6 +31,9 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+
+# Allow dist directory for built artifacts
+!dist/
 
 ### VS Code ###
 .vscode/

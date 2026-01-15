@@ -23,8 +23,7 @@ README.md
 # Maven
 target/
 
-# JAR files (ensure we build from source, not use existing JARs)
-*.jar
+# JAR files are now allowed (we use pre-built JAR from dist/)
 
 # Images (if not needed in container)
 img/
